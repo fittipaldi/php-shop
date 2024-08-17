@@ -10,14 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('stores', function (Blueprint $table) {
+        Schema::create('api_tokens', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->decimal('longitude', 11, 8);
-            $table->decimal('latitude', 11, 8);
-            $table->string('status');
-            $table->string('store_type');
-            $table->integer('max_distance');// in miles
+            $table->string('token')->unique();
+            $table->enum('status', [0, 1])->comment('1 - Active | 0 - Inactive')->default(1);
             $table->timestamps();
         });
     }
@@ -27,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('stores');
+        Schema::dropIfExists('api_tokens');
     }
 };

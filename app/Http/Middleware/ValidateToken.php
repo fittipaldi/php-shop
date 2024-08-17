@@ -2,11 +2,12 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\ApiToken;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthApi
+class ValidateToken
 {
     /**
      * Handle an incoming request.
@@ -15,18 +16,10 @@ class AuthApi
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-
         $token = $request->bearerToken();
-
-
-        //return response()->json(['message' => 'Unauthorized'], 401);
-        echo '<pre>';
-        print_r($token);
-        die();
-
-
+        if (!ApiToken::isTokenValid($token)) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
         return $next($request);
     }
-
 }

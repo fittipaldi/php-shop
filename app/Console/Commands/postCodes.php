@@ -37,14 +37,19 @@ class postCodes extends Command
         $csvData = $this->downloadPostCodes();
 
         foreach ($csvData as $row) {
-
-            if (Postcode::where('postcode', $row['postcode'])->exists()) {
-                $this->info("Postcode {$row['postcode']} already exists.");
+            $pc = preg_replace('/\s+/', '', $row['postcode']);
+            $lat = trim($row['latitude']);
+            $long = trim($row['longitude']);
+            if (!$lat || !$long) {
+                $this->warn("Postcode {$pc} missing lat: {$lat} or long: {$long}.");
                 continue;
             }
-
+            if (Postcode::where('postcode', '=', $pc)->exists()) {
+                $this->info("Postcode {$pc} already exists.");
+                continue;
+            }
             $postcode = new Postcode();
-            $postcode->postcode = preg_replace('/\s+/', '', $row['postcode']);
+            $postcode->postcode = $pc;
             $postcode->latitude = trim($row['latitude']);
             $postcode->longitude = trim($row['longitude']);
             $postcode->save();
