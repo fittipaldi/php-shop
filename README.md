@@ -99,3 +99,9 @@ API Actions
 
     curl --location 'http://127.0.0.1:8000/api/v1/store?postcode=EH39GU' \
     --header 'Authorization: Bearer iXf6omDZmOYheWw3TGxz054rhLfEjgD75KvdzXtWgqZMcKAkZia9e39WJs9EIByS'
+
+
+# TODO
+
+   - Improve the authentication, for example to use JWT
+   - Improve the Makefile commands 
