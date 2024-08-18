@@ -6,11 +6,15 @@ API Shop in Laravel
 
 ## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all
+modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a
+modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video
+tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging
+into our comprehensive video library.
 
 # Getting started
 
@@ -28,7 +32,8 @@ Install all the dependencies using composer
 
     composer install
 
-Copy the example env file and make the required configuration changes in the .env file (**PS.: Check the database credentials**)
+Copy the example env file and make the required configuration changes in the .env file (**PS.: Check the database
+credentials**)
 
     cp .env.example .env 
     
@@ -59,7 +64,8 @@ Start the local development server
 
 You can now access the server at http://localhost:8000
 
-To run the command line to add all UK post code from the postcode service (https://data.freemaptools.com/download/full-uk-postcodes/ukpostcodes.zip)
+To run the command line to add all UK post code from the postcode
+service (https://data.freemaptools.com/download/full-uk-postcodes/ukpostcodes.zip)
 
     php artisan command:post-codes
 
@@ -100,8 +106,10 @@ API Actions
     curl --location 'http://127.0.0.1:8000/api/v1/store?postcode=EH39GU' \
     --header 'Authorization: Bearer iXf6omDZmOYheWw3TGxz054rhLfEjgD75KvdzXtWgqZMcKAkZia9e39WJs9EIByS'
 
-
 # TODO
 
-   - Improve the authentication, for example to use JWT
-   - Improve the Makefile commands 
+- Improve the authentication, for example to use JWT
+- Improve the Makefile commands
+- Create the Docker for auto deploy for this project
+git - Create the GitHub action and pipeline for the CI/CD
+ 
