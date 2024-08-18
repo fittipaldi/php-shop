@@ -111,5 +111,5 @@ API Actions
 - Improve the authentication, for example to use JWT
 - Improve the Makefile commands
 - Create the Docker for auto deploy for this project
-git - Create the GitHub action and pipeline for the CI/CD
+- Create the GitHub action and pipeline for the CI/CD
  
