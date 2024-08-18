@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('longitude', 11, 8);
             $table->decimal('latitude', 11, 8);
-            $table->string('status');
+            $table->enum('status', ['open', 'close'])->comment('Options: open|close');
             $table->string('store_type');
-            $table->integer('max_distance');// in miles
+            $table->integer('max_distance')->comment('Distance in miles');// in miles
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class Store extends Model
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
-            'status' => 'required|max:255',
+            'status' => 'required|in:open,close',
             'store_type' => 'required|max:255',
             'max_distance' => 'required|numeric|between:0,99999',
             'latitude' => ['required', 'regex:/^[-]?(([0-8]?[0-9])\.(\d+))|(90(\.0+)?)$/'],

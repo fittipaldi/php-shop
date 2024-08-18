@@ -84,8 +84,8 @@ API Actions
     --header 'Content-Type: application/json' \
     --data '{
     "name": "The Best Food",
-    "latitude": "55.9608884",
-    "longitude": "-3.3224186",
+    "latitude": 55.9409192,
+    "longitude": -3.1973917,
     "status": "open",
     "store_type": "Restaurant",
     "max_distance": 5
