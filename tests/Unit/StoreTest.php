@@ -52,7 +52,7 @@ class StoreTest extends TestCase
             'store_type' => 'Restaurant',
             'max_distance' => 5
         ]);
-        $response->assertStatus(422)
+        $response->assertStatus(400)
             ->assertJson([
                 'status' => false,
             ]);

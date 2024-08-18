@@ -9,11 +9,57 @@ use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * @OA\Info(
+ *     version="1.0.0",
+ *     title="Store API Documentation",
+ *     description="This is the API documentation for store API."
+ * )
+ */
 class StoreController extends Controller
 {
 
     const KM_TO_MILE = 0.621371;
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/store",
+     *     summary="Retrieve store information by postcode",
+     *     description="This endpoint retrieves store information based on the provided postcode.",
+     *     operationId="getStoreByPostcode",
+     *     tags={"Store"},
+     *     @OA\Parameter(
+     *         name="postcode",
+     *         in="query",
+     *         description="Postcode to search for stores",
+     *         required=true,
+     *         @OA\Schema(
+     *             type="string",
+     *             example="eh39gu"
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Successful response with store data",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="data", type="array", @OA\Items(type="object")),
+     *             @OA\Property(property="message", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized - Invalid or missing Bearer token"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Store not found"
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     }
+     * )
+     */
     public function getStore(Request $request): Response
     {
         try {
@@ -66,6 +112,55 @@ class StoreController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *     path="/api/v1/add-store",
+     *     summary="Add a new store",
+     *     description="This endpoint allows the user to add a new store with specific details.",
+     *     operationId="addStore",
+     *     tags={"Store"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="name", type="string", example="The Best Food bbb"),
+     *             @OA\Property(property="latitude", type="number", format="float", example=55.9409192),
+     *             @OA\Property(property="longitude", type="number", format="float", example=-3.1973917),
+     *             @OA\Property(property="status", type="string", example="closeooo"),
+     *             @OA\Property(property="store_type", type="string", example="Restaurant"),
+     *             @OA\Property(property="max_distance", type="integer", example=5)
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Store created successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="data", type="object"),
+     *             @OA\Property(property="message", type="string", example="Store added successfully")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Bad Request - Invalid input"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized - Invalid or missing Bearer token"
+     *     ),
+     *     security={
+     *         {"bearerAuth": {}}
+     *     },
+     *     @OA\Header(
+     *         header="Content-Type",
+     *         description="Content-Type header",
+     *         @OA\Schema(
+     *             type="string",
+     *             example="application/json"
+     *         )
+     *     )
+     * )
+     */
     public function createStore(Request $request): Response
     {
         try {
@@ -96,7 +191,7 @@ class StoreController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => $e->getMessage()
-            ], 422);
+            ], 400);
         }
     }
 }

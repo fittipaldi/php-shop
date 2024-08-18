@@ -69,11 +69,15 @@ To run the command line to add all UK post code from the postcode service (https
 
 # API
 
+## API Documentation
+
+    http://127.0.0.1:8000/api/documentation
+
 ### API Authorization
 
     Header
         Authorization: Bearer iXf6omDZmOYheWw3TGxz054rhLfEjgD75KvdzXtWgqZMcKAkZia9e39WJs9EIByS
-        
+
 API Actions
 -------
 
